@@ -1,30 +1,31 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import { v4 as uuid } from 'uuid';
+import CreateToDoForm from './components/CreateTodoForm.vue';
+import { ref } from 'vue';
+
+const todoList = ref([]);
+
+function createTodo(text){
+  todoList.value.push({text, isDone: false, id: uuid()})
+}
+
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <img class='vueLogo' src='./assets/vue.svg' alt='Vue Logo'>
+  <h1>Vue To Do</h1>
+  <CreateToDoForm @createTodo="(str) => createTodo(str)"/>
+  <ul>
+    <li v-for="todo in todoList" :key="todo.id">{{ todo.text }}</li>
+  </ul>
+ <div>
+
+ </div>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+
+ .vueLogo{
+  height: 5rem;
+ }
 </style>
