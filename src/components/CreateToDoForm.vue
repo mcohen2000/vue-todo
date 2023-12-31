@@ -6,15 +6,15 @@
         const newTodoText = todoInputText.value;
         if(newTodoText.length > 0){
             emit('createTodo', newTodoText);
+            todoInputText.value = "";
         }
-        todoInputText.value = "";
     } 
 </script>
 
 <template>
     <form class="newTodoForm" @submit.prevent="handleSubmit">
         <input class="newTodoInput" v-model="todoInputText"/>
-        <button type="submit">Submit</button>
+        <button type="submit" :disabled="todoInputText.length === 0">Submit</button>
     </form>
 </template>
 
