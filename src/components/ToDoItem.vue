@@ -1,5 +1,5 @@
 <script setup>
-    import { ref, computed } from 'vue';
+    import { ref } from 'vue';
     const props = defineProps({
         todo: { text: String, isDone: Boolean, id: String}
     });
