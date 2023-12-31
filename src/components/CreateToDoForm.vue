@@ -1,11 +1,18 @@
 <script setup>
     import { ref } from 'vue';
     const emit = defineEmits(["createTodo"])
-    const todoInputText = ref("") 
+    const todoInputText = ref("")
+    function handleSubmit(){
+        const newTodoText = todoInputText.value;
+        if(newTodoText.length > 0){
+            emit('createTodo', newTodoText);
+        }
+        todoInputText.value = "";
+    } 
 </script>
 
 <template>
-    <form class="newTodoForm" @submit.prevent="$emit('createTodo', todoInputText)">
+    <form class="newTodoForm" @submit.prevent="handleSubmit">
         <input class="newTodoInput" v-model="todoInputText"/>
         <button type="submit">Submit</button>
     </form>
